@@ -1,0 +1,24 @@
+spring:
+  server:
+    port: 8081
+
+logging:
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+    org:
+      zalando:
+        logbook: INFO
+
+logbook:
+  write:
+    level: INFO
+
+cache-service:
+  preference:
+    slotNumbers: 10
+    timeToLive: 3600
+    evictionCachePolicy: OLDEST_FIRST
+
+
+cache:
+  version: @project.version@

@@ -1,1 +1,5 @@
-
+spring:
+  profiles:
+    active:
+      - ${APP_ENV}
+    include: oauth2
