@@ -17,8 +17,9 @@ cache-service:
   preference:
     slotNumbers: 10
     timeToLive: 3600
-    evictionCachePolicy: OLDEST_FIRST
+    evictionCachePolicy: OLDER_FIRST
 
 
 cache:
   version: @project.version@
+  suggested-key-properties-ids-for-cache-object: id, ID, Id, iD, name
