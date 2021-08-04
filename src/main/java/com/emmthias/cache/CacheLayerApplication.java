@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CacheLayerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CacheLayerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CacheLayerApplication.class, args);
+    }
 
 }
