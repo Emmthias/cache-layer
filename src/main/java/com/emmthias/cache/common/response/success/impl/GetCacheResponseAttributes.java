@@ -74,4 +74,11 @@ public class GetCacheResponseAttributes implements IApiSuccessResponseAttribute 
             return new GetCacheResponseAttributes(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"payload\": " + payload +
+                '}';
+    }
 }

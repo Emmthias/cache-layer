@@ -74,4 +74,11 @@ public class GetCacheResponse implements IApiSuccessResponse {
             return new GetCacheResponse(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"data\": " + data +
+                '}';
+    }
 }

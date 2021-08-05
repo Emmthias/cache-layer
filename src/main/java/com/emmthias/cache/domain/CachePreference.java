@@ -142,4 +142,13 @@ public class CachePreference {
             return new CachePreference(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"slotNumber\":" + slotNumber +
+                ", \"timeToLive\":" + timeToLive +
+                ", \"evictionCachePolicy\":" + evictionCachePolicy +
+                '}';
+    }
 }
