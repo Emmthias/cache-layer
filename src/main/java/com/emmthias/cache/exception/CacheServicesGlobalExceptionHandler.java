@@ -17,7 +17,6 @@ import java.util.UUID;
 
 import static com.emmthias.cache.constants.Constants.UNKNOWN_ERROR_MSG;
 
-
 @ControllerAdvice
 public class CacheServicesGlobalExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(CacheServicesGlobalExceptionHandler.class);
