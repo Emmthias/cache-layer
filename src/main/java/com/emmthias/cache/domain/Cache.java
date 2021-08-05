@@ -31,4 +31,13 @@ public class Cache {
     public void setElement(Map<String, String> element) {
         this.element = element;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"cachePreference\": " + cachePreference +
+                ", \"elements\": " + elements +
+                ", \"element\": " + element +
+                '}';
+    }
 }

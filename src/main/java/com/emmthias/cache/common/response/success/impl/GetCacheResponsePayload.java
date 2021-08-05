@@ -95,4 +95,12 @@ public class GetCacheResponsePayload implements IApiSuccessResponsePayload {
             return new GetCacheResponsePayload((this));
         }
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"elements\":"  + elements +
+                ", \"element\": " + element +
+                '}';
+    }
 }

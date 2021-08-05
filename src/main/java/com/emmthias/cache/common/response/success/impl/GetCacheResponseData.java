@@ -129,4 +129,13 @@ public class GetCacheResponseData implements IApiSuccessResponseData {
             return new GetCacheResponseData(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"id\": '" + id + '\'' +
+                ", \"attributes\": " + attributes +
+                ", \"type\": '" + type + '\'' +
+                '}';
+    }
 }

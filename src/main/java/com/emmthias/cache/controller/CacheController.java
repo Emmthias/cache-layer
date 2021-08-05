@@ -91,7 +91,6 @@ public class CacheController {
             @RequestBody @ApiParam(required = true,
                     allowEmptyValue = false, name = "data", value = "The request body content ")
                     Cache element) throws JSONException, ExecutionException, InterruptedException {
-
         CachePreference preference = validateCachePreference(element.getCachePreference());
         List<CacheObject> data = convertMapToCacheObject(element.getElements());
 
