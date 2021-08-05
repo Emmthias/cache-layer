@@ -34,4 +34,5 @@ public class Constants {
     public static String SCHEDULER_CONFIGURE_LOG_MESSAGE = "scheduleCleanElements configure every %d seconds";
     public static String SCHEDULER_NOT_CONFIGURE_LOG_MESSAGE = "scheduleCleanElements disable";
     public static String DELETED_BUCKET_MESSAGE = "The bucket '%s' was deleted successfully";
+    public static String DELETED_BUCKET_OBJECT_MESSAGE = "The object '%s' was deleted successfully";
 }

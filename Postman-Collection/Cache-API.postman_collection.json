@@ -101,6 +101,38 @@
 					"response": []
 				},
 				{
+					"name": "Delete Element",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"version\": 1.2\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/stest/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"stest",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Patch Element",
 					"request": {
 						"method": "PATCH",
@@ -260,6 +292,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete Elemen",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"version\": 1.2\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/young/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"young",
+								"object"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -372,6 +436,38 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"element\": {\n        \"id\": 1,\n        \"flag\": true,\n        \"extra\": 9\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"old",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Element",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"version\": 1.2\n    }\n}"
 						},
 						"url": {
 							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old/object",

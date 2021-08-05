@@ -16,6 +16,7 @@ import java.util.Map;
 
 import static com.emmthias.cache.constants.Constants.ALREADY_BUCKET_NAME_IN_USE_MSG;
 import static com.emmthias.cache.constants.Constants.DELETED_BUCKET_MESSAGE;
+import static com.emmthias.cache.constants.Constants.DELETED_BUCKET_OBJECT_MESSAGE;
 import static com.emmthias.cache.constants.Constants.KEY_NOT_FOUND_MSG;
 
 @Repository
@@ -102,6 +103,23 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
     }
 
     /**
+     * delete an element into a bucket identified by key.
+     *
+     * @param key     the bucket identifier.
+     * @param element the element to be patched following the merge approach.
+     * @return the patched element.
+     */
+    @Override
+    public String deleteObjectKey(String key, CacheObject element) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
+
+        cacheMap.get(key).deleteCacheObject(element);
+        return String.format(DELETED_BUCKET_OBJECT_MESSAGE, element.getKey());
+    }
+
+    /**
      * add a list of objects into a bucket identified by key.
      *
      * @param key      the bucket identifier.
@@ -127,7 +145,7 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
         if (!cacheMap.containsKey(key)) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
         }
-        
+
         cacheMap.remove(key, cacheMap.get(key));
         return String.format(DELETED_BUCKET_MESSAGE, key);
     }

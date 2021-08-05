@@ -132,7 +132,7 @@ public class CacheBucketController {
             @ApiParam(required = true, name = "key", value = "the key identifier")
             @PathVariable(KEY) String key,
             @RequestBody @ApiParam(required = true,
-                    allowEmptyValue = false, name = "codeDetailRequest", value = "The request body content ")
+                    allowEmptyValue = false, name = "cacheDetailRequest", value = "The request body content ")
                     JSONObject element) throws JSONException, ExecutionException, InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(
                 buildGetCacheResponse(

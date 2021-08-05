@@ -73,4 +73,13 @@ public interface ICacheService {
      * @return the patched object.
      */
     CompletableFuture<JSONObject> patchObject(String key, CacheObject element);
+
+    /**
+     * delete an object
+     *
+     * @param key     The key identifier for this cache bucket
+     * @param element The element that will remove the value associated with the key.
+     * @return the patched object.
+     */
+    CompletableFuture<String> deleteObject(String key, CacheObject element);
 }

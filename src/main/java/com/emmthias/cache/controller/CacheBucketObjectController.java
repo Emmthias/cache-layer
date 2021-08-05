@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,13 +31,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static com.emmthias.cache.constants.Constants.CACHE_SERVICE_BUCKET_ENDPOINT;
 import static com.emmthias.cache.constants.Constants.CACHE_OBJECT_URL;
+import static com.emmthias.cache.constants.Constants.CACHE_SERVICE_BUCKET_ENDPOINT;
 import static com.emmthias.cache.constants.Constants.KEY;
+import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_DELETE;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_GET;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_PATCH;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_POST;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_PUT;
+import static com.emmthias.cache.converter.Converters.ConvertToJsonElement;
 import static com.emmthias.cache.converter.Converters.buildGetCacheResponse;
 import static com.emmthias.cache.converter.Converters.convertMapToCacheObject;
 import static com.emmthias.cache.converter.Converters.convertMapToSingleCacheObject;
@@ -66,6 +69,9 @@ public class CacheBucketObjectController {
                     response = GetCacheResponse.class),
             @ApiResponse(code = 507,
                     message = "The cache layer has Insufficient Storage.",
+                    response = IApiErrorResponse.class),
+            @ApiResponse(code = 404,
+                    message = "Not found element",
                     response = IApiErrorResponse.class)
     })
     @PostMapping(name = "Create an cache object by key",
@@ -112,14 +118,17 @@ public class CacheBucketObjectController {
     @ApiResponses(value = {
             @ApiResponse(code = 200,
                     message = "The element associated to cache layer identifying by key",
-                    response = GetCacheResponse.class)})
+                    response = GetCacheResponse.class),
+            @ApiResponse(code = 404,
+                    message = "Not found element",
+                    response = IApiErrorResponse.class)})
     @PatchMapping(name = "patch", value = {CACHE_OBJECT_URL}, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<IApiResponse> patchBucketObjectByKey(
             @ApiParam(required = true, name = "key", value = "the key identifier")
             @PathVariable(KEY) String key,
             @RequestBody @ApiParam(required = true,
-                    allowEmptyValue = false, name = "codeDetailRequest", value = "The request body content ")
+                    allowEmptyValue = false, name = "cacheDetailRequest", value = "The request body content ")
                     Cache element) throws JSONException, ExecutionException, InterruptedException {
         CacheObject elementToPatch = convertMapToSingleCacheObject(element.getElement());
         return ResponseEntity.status(HttpStatus.OK)
@@ -132,17 +141,44 @@ public class CacheBucketObjectController {
     @ApiResponses(value = {
             @ApiResponse(code = 200,
                     message = "The element associated to cache layer identifying by key",
-                    response = GetCacheResponse.class)})
+                    response = GetCacheResponse.class),
+            @ApiResponse(code = 404,
+                    message = "Not found element",
+                    response = IApiErrorResponse.class)})
     @PutMapping(name = "put", value = {CACHE_OBJECT_URL}, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<IApiResponse> updateBucketObjectByKey(
             @ApiParam(required = true, name = "key", value = "the key identifier")
             @PathVariable(KEY) String key,
             @RequestBody @ApiParam(required = true,
-                    allowEmptyValue = false, name = "codeDetailRequest", value = "The request body content ")
+                    allowEmptyValue = false, name = "cacheDetailRequest", value = "The request body content ")
                     Cache element) throws JSONException, ExecutionException, InterruptedException {
         CacheObject elementToUpdate = convertMapToSingleCacheObject(element.getElement());
         return ResponseEntity.status(HttpStatus.OK)
                 .body(buildGetCacheResponse(cacheService.updateObject(key, elementToUpdate).get()));
+    }
+
+    @ApiOperation(value = "This end point will delete the {object} provided in the body of the request into their" +
+            "corresponding slot in memory at {key}",
+            httpMethod = REQUEST_TYPE_DELETE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "The element associated to cache layer identifying by key",
+                    response = GetCacheResponse.class),
+            @ApiResponse(code = 404,
+                    message = "Not found element",
+                    response = IApiErrorResponse.class)})
+    @DeleteMapping(name = "delete", value = {CACHE_OBJECT_URL}, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<IApiResponse> deleteBucketObjectByKey(
+            @ApiParam(required = true, name = "key", value = "the key identifier")
+            @PathVariable(KEY) String key,
+            @RequestBody @ApiParam(required = true,
+                    allowEmptyValue = false, name = "cacheDetailRequest", value = "The request body content ")
+                    Cache element) throws JSONException, ExecutionException, InterruptedException {
+        CacheObject elementToUpdate = convertMapToSingleCacheObject(element.getElement());
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(buildGetCacheResponse(ConvertToJsonElement("response", cacheService.deleteObject(key,
+                        elementToUpdate).get())));
     }
 }

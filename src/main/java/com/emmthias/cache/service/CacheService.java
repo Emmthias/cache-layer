@@ -97,4 +97,16 @@ public class CacheService implements ICacheService {
     public CompletableFuture<JSONObject> patchObject(String key, CacheObject element) {
         return CompletableFuture.completedFuture(factory.patchObjectKey(key, element));
     }
+
+    /**
+     * delete an object
+     *
+     * @param key     The key identifier for this cache bucket
+     * @param element The element that will remove the value associated with the key.
+     * @return the patched object.
+     */
+    @Override
+    public CompletableFuture<String> deleteObject(String key, CacheObject element) {
+        return CompletableFuture.completedFuture(factory.deleteObjectKey(key, element));
+    }
 }
