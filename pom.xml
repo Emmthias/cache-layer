@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.emmthias</groupId>
     <artifactId>cache</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.7</version>
     <name>cache Layer</name>
     <description>Cache implementation based on requirements</description>
     <properties>
