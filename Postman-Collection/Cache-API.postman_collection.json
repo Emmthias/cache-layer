@@ -96,6 +96,68 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Put Element",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1 ,\n        \"name\": \"update value\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"object",
+								"stest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Element",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1,\n        \"flag\": true,\n        \"extra\": 9\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"object",
+								"stest"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -173,7 +235,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"elements\": [\n        {\n            \"id\": 6\n        }\n    ]\n}"
+							"raw": "{\n    \"elements\": [\n        {\n            \"id\": 7\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/young",
@@ -186,6 +248,68 @@
 								"{{MAIN-ENDPOINT}}",
 								"object",
 								"young"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Element",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1 ,\n        \"name\": \"update value\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"object",
+								"stest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Element",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1,\n        \"flag\": true,\n        \"extra\": 9\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"object",
+								"stest"
 							]
 						}
 					},
@@ -284,6 +408,68 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Put Element",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1 ,\n        \"name\": \"update value\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"object",
+								"stest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Element",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1,\n        \"flag\": true,\n        \"extra\": 9\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"object",
+								"stest"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -309,6 +495,37 @@
 						"{{MAIN-ENDPOINT}}",
 						"object",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Bucket",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"OLDER_FIRST\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/old",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{MAIN-ENDPOINT}}",
+						"object",
+						"old"
 					]
 				}
 			},

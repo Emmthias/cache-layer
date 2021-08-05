@@ -64,6 +64,10 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public Collection<JSONObject> getBucket(String key) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
+
         return cacheMap.get(key).getAllCacheObject();
     }
 
@@ -76,6 +80,9 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public JSONObject updateObjectByKey(String key, CacheObject element) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
         return (JSONObject) cacheMap.get(key).updateCacheObject(element);
     }
 
@@ -88,6 +95,9 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public JSONObject patchObjectKey(String key, CacheObject element) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
         return (JSONObject) cacheMap.get(key).updateCacheObject(element);
     }
 
@@ -100,6 +110,9 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public Collection<JSONObject> addObjectByKey(String key, List<CacheObject> elements) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
         return cacheMap.get(key).addObjects(elements);
     }
 
@@ -111,24 +124,11 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public String deleteBucket(String key) {
-        if (cacheMap.containsKey(key)) {
-            cacheMap.remove(key, cacheMap.get(key));
-            return String.format(DELETED_BUCKET_MESSAGE, key);
-        } else {
+        if (!cacheMap.containsKey(key)) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
         }
-
-    }
-
-    /**
-     * Delete an object into a bucket identified by key.
-     *
-     * @param key                the bucket identified.
-     * @param elementToBeDeleted the element to be deleted.
-     * @return the deleted element.
-     */
-    @Override
-    public JSONObject deleteObjectByKey(String key, JSONObject elementToBeDeleted) {
-        return null;
+        
+        cacheMap.remove(key, cacheMap.get(key));
+        return String.format(DELETED_BUCKET_MESSAGE, key);
     }
 }

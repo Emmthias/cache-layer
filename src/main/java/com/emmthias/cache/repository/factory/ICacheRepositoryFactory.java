@@ -71,12 +71,4 @@ public interface ICacheRepositoryFactory {
      */
     String deleteBucket(String key);
 
-    /**
-     * Delete an object into a bucket identified by key.
-     *
-     * @param key                the bucket identified.
-     * @param elementToBeDeleted the element to be deleted.
-     * @return the deleted element.
-     */
-    JSONObject deleteObjectByKey(String key, JSONObject elementToBeDeleted);
 }
