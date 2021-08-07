@@ -34,5 +34,7 @@ RUN chmod +x /app/cache-layer/entrypoint.sh
 EXPOSE 8080
 EXPOSE 9010
 
+ENV APP_ENV=dev
+
 # Executing application JAR
 ENTRYPOINT ["/bin/sh","./entrypoint.sh"]

@@ -84,7 +84,7 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
         if (!cacheMap.containsKey(key)) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
         }
-        return (JSONObject) cacheMap.get(key).updateCacheObject(element);
+        return cacheMap.get(key).updateCacheObject(element);
     }
 
     /**
@@ -99,14 +99,14 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
         if (!cacheMap.containsKey(key)) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
         }
-        return cacheMap.get(key).updateCacheObject(element);
+        return cacheMap.get(key).patchCacheObject(element);
     }
 
     /**
      * delete an element into a bucket identified by key.
      *
      * @param key     the bucket identifier.
-     * @param element the element to be patched following the merge approach.
+     * @param element the element to be deleted.
      * @return the patched element.
      */
     @Override
