@@ -20,7 +20,6 @@ public class CacheService implements ICacheService {
     @Autowired
     ICacheRepositoryFactory factory;
 
-
     /**
      * Return all the buckets availables in the system.
      *

@@ -1,7 +1,5 @@
 package com.emmthias.cache.aop;
 
-import com.emmthias.cache.common.response.success.IApiResponse;
-import com.emmthias.cache.domain.Cache;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -11,7 +9,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

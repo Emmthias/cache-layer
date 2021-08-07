@@ -3,6 +3,7 @@ package com.emmthias.cache.repository.impl;
 import com.emmthias.cache.domain.CachePreference;
 import com.emmthias.cache.domain.ICacheObject;
 import com.emmthias.cache.exception.KeyNotFoundException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +30,7 @@ import static java.util.Objects.nonNull;
  * @param <R> Class that will hold `data`
  */
 
-public interface ICacheRepository<K, I extends ICacheObject<K, R>, R> {
+public interface ICacheRepository<K, I extends ICacheObject<K, R>, R extends JSONObject> {
     Logger logger = LoggerFactory.getLogger(ICacheRepository.class);
 
     /**
@@ -120,7 +121,8 @@ public interface ICacheRepository<K, I extends ICacheObject<K, R>, R> {
         if (!getInstance().containsKey(object.getKey())) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, object.getKey()));
         }
-        return nonNull(getInstance().remove(object.getKey(),getInstance().get(object.getKey())));
+        getInstance().remove(object.getKey(), getInstance().get(object.getKey()));
+        return true;
     }
 
     /**

@@ -211,6 +211,12 @@ Test
 ===
 The easiest way is importing the [Postman Collection ](Postman-Collection/Cache-API.postman_collection.json)
 
+code coverage
+![alt text](Code-Coverage.png "Code Coverage")
+
+code coverage detail
+![alt text](Code-Coverage-Detailed.png "Code Coverage detail")
+
 ---
 Development
 ===

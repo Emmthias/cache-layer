@@ -1,0 +1,7 @@
+{
+  "cachePreference": {
+    "slotNumber": 5,
+    "timeToLive": 0,
+    "evictionCachePolicy": "OLDER_FIRST"
+  }
+}

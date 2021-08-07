@@ -99,7 +99,7 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
         if (!cacheMap.containsKey(key)) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
         }
-        return (JSONObject) cacheMap.get(key).updateCacheObject(element);
+        return cacheMap.get(key).updateCacheObject(element);
     }
 
     /**

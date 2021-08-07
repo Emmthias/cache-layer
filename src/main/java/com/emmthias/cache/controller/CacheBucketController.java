@@ -6,7 +6,6 @@ import com.emmthias.cache.common.response.success.IApiResponse;
 import com.emmthias.cache.common.response.success.impl.GetCacheResponse;
 import com.emmthias.cache.domain.Cache;
 import com.emmthias.cache.domain.CacheObject;
-import com.emmthias.cache.domain.CachePreference;
 import com.emmthias.cache.service.ICacheService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,11 +38,10 @@ import static com.emmthias.cache.constants.Constants.KEY;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_DELETE;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_GET;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_POST;
-import static com.emmthias.cache.converter.Converters.ConvertToJsonElement;
+import static com.emmthias.cache.converter.Converters.convertToJsonElement;
 import static com.emmthias.cache.converter.Converters.buildGetCacheResponse;
 import static com.emmthias.cache.converter.Converters.convertMapIntoJsonStructure;
 import static com.emmthias.cache.converter.Converters.convertMapToCacheObject;
-import static com.emmthias.cache.validator.ValidatorUtil.validateCachePreference;
 
 /**
  * Controller to handle cache bucket service
@@ -86,11 +84,9 @@ public class CacheBucketController {
             @RequestBody @ApiParam(required = true,
                     allowEmptyValue = false, name = "data", value = "The request body content ")
                     Cache element) throws JSONException, ExecutionException, InterruptedException {
-        CachePreference preference = validateCachePreference(element.getCachePreference());
         List<CacheObject> data = convertMapToCacheObject(element.getElements());
-
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(buildGetCacheResponse(cacheService.createCacheObject(key, data, preference).get()));
+                .body(buildGetCacheResponse(cacheService.createCacheObject(key, data, element.getCachePreference()).get()));
     }
 
     @ApiOperation(value = "This end point will return all the cache objects.",
@@ -136,7 +132,7 @@ public class CacheBucketController {
                     JSONObject element) throws JSONException, ExecutionException, InterruptedException {
         return ResponseEntity.status(HttpStatus.OK).body(
                 buildGetCacheResponse(
-                        ConvertToJsonElement("response", cacheService.delete(key).get()))
+                        convertToJsonElement("response", cacheService.delete(key).get()))
         );
     }
 }

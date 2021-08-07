@@ -34,14 +34,14 @@ public class Converters {
 
     public static JSONObject mergeObjects(JSONObject currentElement, CacheObject newElement) {
         newElement.getValue().keySet().stream().forEach(e -> currentElement.put(e, newElement.getValue().get(e)));
-        return newElement.getValue();
+        return currentElement;
     }
 
-    public static JSONObject convertMapIntoJsonStructure(Map<String, ICacheRepository> CacheRepositoryMap) {
+    public static JSONObject convertMapIntoJsonStructure(Map<String, ICacheRepository> cacheRepositoryMap) {
         JSONObject currentStructure = new JSONObject();
         JSONObject currentPreferences;
 
-        for (Map.Entry<String, ICacheRepository> currentBucket : CacheRepositoryMap.entrySet()) {
+        for (Map.Entry<String, ICacheRepository> currentBucket : cacheRepositoryMap.entrySet()) {
             currentPreferences = new JSONObject()
                     .put("cachePreference", convertCachePreference(currentBucket.getValue().getCachePreference()));
             currentPreferences.put("elements", currentBucket.getValue().getAllCacheObject());
@@ -91,7 +91,7 @@ public class Converters {
                 .build();
     }
 
-    public static JSONObject ConvertToJsonElement(String key, String value) {
+    public static JSONObject convertToJsonElement(String key, String value) {
         return new JSONObject().put(key, value);
     }
 

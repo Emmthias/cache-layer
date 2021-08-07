@@ -39,7 +39,7 @@ import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_GET;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_PATCH;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_POST;
 import static com.emmthias.cache.constants.Constants.REQUEST_TYPE_PUT;
-import static com.emmthias.cache.converter.Converters.ConvertToJsonElement;
+import static com.emmthias.cache.converter.Converters.convertToJsonElement;
 import static com.emmthias.cache.converter.Converters.buildGetCacheResponse;
 import static com.emmthias.cache.converter.Converters.convertMapToCacheObject;
 import static com.emmthias.cache.converter.Converters.convertMapToSingleCacheObject;
@@ -178,7 +178,7 @@ public class CacheBucketObjectController {
                     Cache element) throws JSONException, ExecutionException, InterruptedException {
         CacheObject elementToUpdate = convertMapToSingleCacheObject(element.getElement());
         return ResponseEntity.status(HttpStatus.OK)
-                .body(buildGetCacheResponse(ConvertToJsonElement("response", cacheService.deleteObject(key,
+                .body(buildGetCacheResponse(convertToJsonElement("response", cacheService.deleteObject(key,
                         elementToUpdate).get())));
     }
 }

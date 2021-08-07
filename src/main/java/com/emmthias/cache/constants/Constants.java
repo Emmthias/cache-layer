@@ -13,7 +13,9 @@ public class Constants {
     public static final String CACHE_BUCKET_BY_KEY_URL = CACHE_BUCKET_URL + "/{" + KEY + "}";
     public static final String CACHE_OBJECT_URL = "/{" + KEY + "}/object";
     public final static String CACHE_SERVICE_BUCKET_ENDPOINT = CACHE_SERVICE_ENDPOINT + CACHE_BUCKET_URL;
-
+    public static final Integer SLOT_NUMBER_DEFAULT_VALUE = 10000;
+    public static final Integer TIME_TO_LIVE_DEFAULT_VALUE = 3600;
+    public static final String EVICTION_POLICY_DEFAULT_VALUE_NAME = "REJECT";
     public static final String SLOT_NUMBER_PROPERTY = "${cache-service.preference.slotNumbers:10000}";
     public static final String TIME_TO_LIVE_PROPERTY = "${cache-service.preference.timeToLive:3600}";
     public static final String EVICTION_CACHE_PROPERTY = "${cache-service.preference.evictionCachePolicy:REJECT}";
@@ -28,6 +30,7 @@ public class Constants {
     public static int AVOID_DELAY_EXECUTION = 0;
     public static String REJECT_POLICY_WARN_MESSAGE = "REJECT POLICY Applied, it will insert only a subset of the " +
             "original request %d elements of a total %d";
+    public static String REJECT_POLICY_MESSAGE = "REJECT POLICY Applied.";
     public static String NEWEST_POLICY_WARN_MESSAGE = "NEWEST POLICY applied for %d missing element number";
     public static String ELDEST_MECHANISM_APPLIED = "removeEldest Mechanism applied";
     public static String SCHEDULER_CLEAN_LOG_MESSAGE = "Clean instance with %d elements";
