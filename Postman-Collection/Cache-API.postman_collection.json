@@ -637,6 +637,44 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "_health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/_health",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"_health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Current version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/info",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"info"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

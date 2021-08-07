@@ -86,7 +86,17 @@ swagger pages
 
 Docker Instruction
 ===
-In order to create your own docker run the following command.
+if you want to try the docker version located in dockerHub run the following command
+
+````shell
+docker pull polanco/cache-layer:latest
+````
+_* The docker image is available at port 80 http://localhost/swagger-ui.html_
+
+_* additional there is a postman collection that you can use, see more details on **test** section_
+
+
+or if you eant to create your own local docker version run the following command.
 
 ```shell
 docker build . -t cache-layer && docker-compose up
