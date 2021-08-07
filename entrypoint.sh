@@ -1,4 +1,6 @@
 
+  echo "APP_ENV is $APP_ENV"
+
   JVM_ARGS="-Dcom.sun.management.jmxremote.rmi.port=9010"
   JVM_ARGS="$JVM_ARGS -Dcom.sun.management.jmxremote=true"
   JVM_ARGS="$JVM_ARGS -Dcom.sun.management.jmxremote.port=9010"
