@@ -55,6 +55,15 @@ public interface ICacheRepositoryFactory {
     JSONObject patchObjectKey(String key, CacheObject element);
 
     /**
+     * delete an element into a bucket identified by key.
+     *
+     * @param key     the bucket identifier.
+     * @param element the element to be patched following the merge approach.
+     * @return the patched element.
+     */
+    String deleteObjectKey(String key, CacheObject element);
+
+    /**
      * add a list of objects into a bucket identified by key.
      *
      * @param key      the bucket identifier.
@@ -71,12 +80,4 @@ public interface ICacheRepositoryFactory {
      */
     String deleteBucket(String key);
 
-    /**
-     * Delete an object into a bucket identified by key.
-     *
-     * @param key                the bucket identified.
-     * @param elementToBeDeleted the element to be deleted.
-     * @return the deleted element.
-     */
-    JSONObject deleteObjectByKey(String key, JSONObject elementToBeDeleted);
 }

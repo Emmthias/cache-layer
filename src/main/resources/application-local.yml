@@ -16,8 +16,8 @@ logbook:
 cache-service:
   preference:
     slotNumbers: 10
-    timeToLive: 3600
-    evictionCachePolicy: OLDER_FIRST
+    timeToLive: 0
+    evictionCachePolicy: REJECT
 
 
 cache:

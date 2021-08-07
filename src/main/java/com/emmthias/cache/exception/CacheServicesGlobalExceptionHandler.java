@@ -17,7 +17,6 @@ import java.util.UUID;
 
 import static com.emmthias.cache.constants.Constants.UNKNOWN_ERROR_MSG;
 
-
 @ControllerAdvice
 public class CacheServicesGlobalExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(CacheServicesGlobalExceptionHandler.class);
@@ -43,5 +42,38 @@ public class CacheServicesGlobalExceptionHandler {
                         .withId(UUID.randomUUID().toString())
                         .build())
                 .build();
+    }
+
+    @ExceptionHandler({AlreadyKeyFoundException.class})
+    protected ResponseEntity<IApiErrorResponse> handleAlreadyKeyFoundException(
+            HttpServletRequest httpServletRequest, Exception ex) throws Throwable {
+        String currentExceptionMessage = ex.getMessage();
+        this.logger.error(currentExceptionMessage);
+
+        CommonApiErrorResponse codeErrorResponse =
+                getCodeErrorResponseBuilder(currentExceptionMessage);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(codeErrorResponse);
+    }
+
+    @ExceptionHandler({KeyNotFoundException.class})
+    protected ResponseEntity<IApiErrorResponse> handleKeyNotFoundException(
+            HttpServletRequest httpServletRequest, Exception ex) throws Throwable {
+        String currentExceptionMessage = ex.getMessage();
+        this.logger.error(currentExceptionMessage);
+
+        CommonApiErrorResponse codeErrorResponse =
+                getCodeErrorResponseBuilder(currentExceptionMessage);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(codeErrorResponse);
+    }
+
+    @ExceptionHandler({RejectPolicyException.class})
+    protected ResponseEntity<IApiErrorResponse> handleRejectPolicyException(
+            HttpServletRequest httpServletRequest, Exception ex) throws Throwable {
+        String currentExceptionMessage = ex.getMessage();
+        this.logger.error(currentExceptionMessage);
+
+        CommonApiErrorResponse codeErrorResponse =
+                getCodeErrorResponseBuilder(currentExceptionMessage);
+        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).body(codeErrorResponse);
     }
 }

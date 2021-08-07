@@ -1,0 +1,8 @@
+ {
+  "element":
+    {
+      "id": 1,
+      "name": "updated value",
+      "new-property": "new value"
+    }
+}

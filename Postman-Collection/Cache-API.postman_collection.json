@@ -9,37 +9,6 @@
 			"name": "REJECT",
 			"item": [
 				{
-					"name": "Create Bucket",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"REJECT\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
-						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/createObject/stest",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"{{MAIN-ENDPOINT}}",
-								"createObject",
-								"stest"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Object",
 					"request": {
 						"method": "GET",
@@ -51,7 +20,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/stest/object",
 							"protocol": "http",
 							"host": [
 								"{{HOST}}"
@@ -59,8 +28,9 @@
 							"port": "{{PORT}}",
 							"path": [
 								"{{MAIN-ENDPOINT}}",
-								"object",
-								"stest"
+								"bucket",
+								"stest",
+								"object"
 							]
 						}
 					},
@@ -82,7 +52,7 @@
 							"raw": "{\n    \"elements\": [\n        {\n            \"id\": 7,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"cuatro\"\n        },\n        {\n            \"id\": 5,\n            \"version\": 1.2\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/stest",
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/stest/object",
 							"protocol": "http",
 							"host": [
 								"{{HOST}}"
@@ -90,8 +60,105 @@
 							"port": "{{PORT}}",
 							"path": [
 								"{{MAIN-ENDPOINT}}",
-								"object",
-								"stest"
+								"bucket",
+								"stest",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Element",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1 ,\n        \"name\": \"update value\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/stest/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"stest",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Element",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"version\": 1.2\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/stest/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"stest",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Element",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1,\n        \"flag\": true,\n        \"extra\": 9\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/stest/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"stest",
+								"object"
 							]
 						}
 					},
@@ -103,37 +170,6 @@
 			"name": "NEWEST",
 			"item": [
 				{
-					"name": "Create Bucket",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"NEWEST_FIRST\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
-						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/createObject/young",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"{{MAIN-ENDPOINT}}",
-								"createObject",
-								"young"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Object",
 					"request": {
 						"method": "GET",
@@ -145,7 +181,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/young",
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/young/object",
 							"protocol": "http",
 							"host": [
 								"{{HOST}}"
@@ -153,8 +189,9 @@
 							"port": "{{PORT}}",
 							"path": [
 								"{{MAIN-ENDPOINT}}",
-								"object",
-								"young"
+								"bucket",
+								"young",
+								"object"
 							]
 						}
 					},
@@ -173,10 +210,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"elements\": [\n        {\n            \"id\": 6\n        }\n    ]\n}"
+							"raw": "{\n    \"elements\": [\n        {\n            \"id\": 7\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/young",
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/young/object",
 							"protocol": "http",
 							"host": [
 								"{{HOST}}"
@@ -184,8 +221,105 @@
 							"port": "{{PORT}}",
 							"path": [
 								"{{MAIN-ENDPOINT}}",
-								"object",
-								"young"
+								"bucket",
+								"young",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Element",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1 ,\n        \"name\": \"update value\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/young/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"young",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Element",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1,\n        \"flag\": true,\n        \"extra\": 9\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/young/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"young",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Elemen",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"version\": 1.2\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/young/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"young",
+								"object"
 							]
 						}
 					},
@@ -197,37 +331,6 @@
 			"name": "OLDER",
 			"item": [
 				{
-					"name": "Create Bucket",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"OLDER_FIRST\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
-						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/createObject/old",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"{{MAIN-ENDPOINT}}",
-								"createObject",
-								"old"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Object",
 					"request": {
 						"method": "GET",
@@ -239,7 +342,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/old",
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old/object",
 							"protocol": "http",
 							"host": [
 								"{{HOST}}"
@@ -247,8 +350,9 @@
 							"port": "{{PORT}}",
 							"path": [
 								"{{MAIN-ENDPOINT}}",
-								"object",
-								"old"
+								"bucket",
+								"old",
+								"object"
 							]
 						}
 					},
@@ -270,7 +374,7 @@
 							"raw": "{\n    \"elements\": [\n        {\n            \"id\": 6\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/old",
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old/object",
 							"protocol": "http",
 							"host": [
 								"{{HOST}}"
@@ -278,8 +382,105 @@
 							"port": "{{PORT}}",
 							"path": [
 								"{{MAIN-ENDPOINT}}",
-								"object",
-								"old"
+								"bucket",
+								"old",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Element",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1 ,\n        \"name\": \"update value\"\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"old",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Element",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"id\": 1,\n        \"flag\": true,\n        \"extra\": 9\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"old",
+								"object"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Element",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"element\": {\n        \"version\": 1.2\n    }\n}"
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old/object",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"{{MAIN-ENDPOINT}}",
+								"bucket",
+								"old",
+								"object"
 							]
 						}
 					},
@@ -299,7 +500,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/object/",
+					"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket",
 					"protocol": "http",
 					"host": [
 						"{{HOST}}"
@@ -307,8 +508,169 @@
 					"port": "{{PORT}}",
 					"path": [
 						"{{MAIN-ENDPOINT}}",
-						"object",
-						""
+						"bucket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Bucket [REJECT]",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"REJECT\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/stest",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{MAIN-ENDPOINT}}",
+						"bucket",
+						"stest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Bucket [NEWEST_FIRST]",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"NEWEST_FIRST\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/young",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{MAIN-ENDPOINT}}",
+						"bucket",
+						"young"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Bucket [OLDER_FIRST]",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"OLDER_FIRST\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{MAIN-ENDPOINT}}",
+						"bucket",
+						"old"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Bucket",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cachePreference\": {\n        \"slotNumber\": 5,\n        \"timeToLive\": 0,\n        \"evictionCachePolicy\": \"OLDER_FIRST\"\n    },\n    \"elements\": [\n        {\n            \"id\": 1,\n            \"name\": \"fx\"\n        },\n        {\n            \"name\": \"dos\"\n        },\n        {\n            \"version\": 1.2\n        },\n        {\n            \"id\":4\n        },\n        {\n            \"name\": \"cinco\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/{{MAIN-ENDPOINT}}/bucket/old",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"{{MAIN-ENDPOINT}}",
+						"bucket",
+						"old"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/_health",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"_health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Current version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/info",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"info"
 					]
 				}
 			},

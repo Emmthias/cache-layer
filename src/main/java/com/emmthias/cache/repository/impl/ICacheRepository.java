@@ -3,6 +3,7 @@ package com.emmthias.cache.repository.impl;
 import com.emmthias.cache.domain.CachePreference;
 import com.emmthias.cache.domain.ICacheObject;
 import com.emmthias.cache.exception.KeyNotFoundException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,20 +30,22 @@ import static java.util.Objects.nonNull;
  * @param <R> Class that will hold `data`
  */
 
-public interface ICacheRepository<K, I extends ICacheObject<K, R>, R> {
+public interface ICacheRepository<K, I extends ICacheObject<K, R>, R extends JSONObject> {
     Logger logger = LoggerFactory.getLogger(ICacheRepository.class);
 
     /**
+     * get cache preference associated with {@link com.emmthias.cache.domain.CachePreference}
+     *
+     * @return
+     */
+    CachePreference getCachePreference();
+
+    /**
      * set cache preference associated with {@link com.emmthias.cache.domain.CachePreference}
+     *
      * @param cachePreference
      */
     void setCachePreference(CachePreference cachePreference);
-
-    /**
-     * get cache preference associated with {@link com.emmthias.cache.domain.CachePreference}
-      * @return
-     */
-    CachePreference getCachePreference();
 
     /**
      * Add object into a Key object
@@ -93,12 +96,11 @@ public interface ICacheRepository<K, I extends ICacheObject<K, R>, R> {
      * @return the updated object
      */
     default R updateCacheObject(I object) {
-        if (getInstance().containsKey(object.getKey())) {
-            getInstance().put(object.getKey(), object.getValue());
-            return getInstance().get(object.getKey());
-        } else {
+        if (!getInstance().containsKey(object.getKey())) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, object.getKey()));
         }
+        getInstance().put(object.getKey(), object.getValue());
+        return getInstance().get(object.getKey());
     }
 
     /**
@@ -112,11 +114,15 @@ public interface ICacheRepository<K, I extends ICacheObject<K, R>, R> {
     /**
      * delete a cache object
      *
-     * @param key the key that identify the object into the cache structure
+     * @param object the key that identify the object into the cache structure
      * @return the deletion status
      */
-    default Boolean deleteCacheObject(K key) {
-        return nonNull(getInstance().remove(getInstance().get(key)));
+    default Boolean deleteCacheObject(I object) {
+        if (!getInstance().containsKey(object.getKey())) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, object.getKey()));
+        }
+        getInstance().remove(object.getKey(), getInstance().get(object.getKey()));
+        return true;
     }
 
     /**

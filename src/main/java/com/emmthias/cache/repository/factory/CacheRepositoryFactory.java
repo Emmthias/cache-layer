@@ -16,6 +16,7 @@ import java.util.Map;
 
 import static com.emmthias.cache.constants.Constants.ALREADY_BUCKET_NAME_IN_USE_MSG;
 import static com.emmthias.cache.constants.Constants.DELETED_BUCKET_MESSAGE;
+import static com.emmthias.cache.constants.Constants.DELETED_BUCKET_OBJECT_MESSAGE;
 import static com.emmthias.cache.constants.Constants.KEY_NOT_FOUND_MSG;
 
 @Repository
@@ -64,6 +65,10 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public Collection<JSONObject> getBucket(String key) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
+
         return cacheMap.get(key).getAllCacheObject();
     }
 
@@ -76,7 +81,10 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public JSONObject updateObjectByKey(String key, CacheObject element) {
-        return (JSONObject) cacheMap.get(key).updateCacheObject(element);
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
+        return cacheMap.get(key).updateCacheObject(element);
     }
 
     /**
@@ -88,7 +96,27 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public JSONObject patchObjectKey(String key, CacheObject element) {
-        return (JSONObject) cacheMap.get(key).updateCacheObject(element);
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
+        return cacheMap.get(key).patchCacheObject(element);
+    }
+
+    /**
+     * delete an element into a bucket identified by key.
+     *
+     * @param key     the bucket identifier.
+     * @param element the element to be deleted.
+     * @return the patched element.
+     */
+    @Override
+    public String deleteObjectKey(String key, CacheObject element) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
+
+        cacheMap.get(key).deleteCacheObject(element);
+        return String.format(DELETED_BUCKET_OBJECT_MESSAGE, element.getKey());
     }
 
     /**
@@ -100,6 +128,9 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public Collection<JSONObject> addObjectByKey(String key, List<CacheObject> elements) {
+        if (!cacheMap.containsKey(key)) {
+            throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
+        }
         return cacheMap.get(key).addObjects(elements);
     }
 
@@ -111,24 +142,11 @@ public class CacheRepositoryFactory implements ICacheRepositoryFactory {
      */
     @Override
     public String deleteBucket(String key) {
-        if (cacheMap.containsKey(key)) {
-            cacheMap.remove(key, cacheMap.get(key));
-            return String.format(DELETED_BUCKET_MESSAGE, key);
-        } else {
+        if (!cacheMap.containsKey(key)) {
             throw new KeyNotFoundException(String.format(KEY_NOT_FOUND_MSG, key));
         }
 
-    }
-
-    /**
-     * Delete an object into a bucket identified by key.
-     *
-     * @param key                the bucket identified.
-     * @param elementToBeDeleted the element to be deleted.
-     * @return the deleted element.
-     */
-    @Override
-    public JSONObject deleteObjectByKey(String key, JSONObject elementToBeDeleted) {
-        return null;
+        cacheMap.remove(key, cacheMap.get(key));
+        return String.format(DELETED_BUCKET_MESSAGE, key);
     }
 }

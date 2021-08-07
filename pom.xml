@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.emmthias</groupId>
     <artifactId>cache</artifactId>
-    <version>0.1.5</version>
+    <version>1.0.5</version>
     <name>cache Layer</name>
     <description>Cache implementation based on requirements</description>
     <properties>
@@ -42,6 +42,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin.external.google</groupId>
+                    <artifactId>android-json</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -62,13 +68,11 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <version>2.5.3</version>
         </dependency>
-
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
-
     </dependencies>
 
     <build>
